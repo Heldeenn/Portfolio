@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Image
 {
-    const MAX_SIZE = '500k';
+    const MAX_SIZE = '1000k';
 
     /**
      * @ORM\Id()
@@ -25,14 +25,13 @@ class Image
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="L'image doit comporter un nom")
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(max="255", maxMessage="Le nom de l'image doit comporter {{ limit }} caractères maximum")
      */
     private $name;
 
     /**
-     * @Vich\UploadableField(mapping="actuality_file",fileNameProperty="picture")
+     * @Vich\UploadableField(mapping="image_file",fileNameProperty="name")
      * @var File|null
      * @Assert\File(maxSize = Image::MAX_SIZE,
      *     maxSizeMessage="Le fichier est trop gros  ({{ size }} {{ suffix }}),
@@ -91,8 +90,19 @@ class Image
         }
     }
 
-    public function getActualityFile(): ?File
+    public function getNameFile(): ?File
     {
         return $this->nameFile;
+    }
+
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }
