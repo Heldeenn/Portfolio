@@ -1,9 +1,10 @@
 $primary-color: #06BC9B;
 $secondary-color: #525d68;
-$dark-color: #141c3a;
+$dark-color: #701F00;
 
 $theme-colors: (
     "primary": $primary-color,
+    "danger": $dark-color,
 );
 
 $main-font: 'Varela Round', sans-serif;
