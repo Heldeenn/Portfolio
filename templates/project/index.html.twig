@@ -28,7 +28,7 @@
                         <td>{{ project.description }}</td>
                         <td>{{ project.client }}</td>
                         <td><a href="{{ project.github }}">{{ project.github }}</a></td>
-                        <td>{{ project.website }}</td>
+                        <td><a href="{{ project.website }}">{{ project.website }}</a></td>
                         <td>
                             <a class=" btn btn-primary" href="{{ path('project_edit', {'id': project.id}) }}">Modifier</a>
                         </td>
