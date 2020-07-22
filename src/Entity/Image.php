@@ -3,14 +3,20 @@
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
+ * @Vich\Uploadable()
  */
 class Image
 {
+    const MAX_SIZE = '500k';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -24,6 +30,23 @@ class Image
      * @Assert\Length(max="255", maxMessage="Le nom de l'image doit comporter {{ limit }} caractères maximum")
      */
     private $name;
+
+    /**
+     * @Vich\UploadableField(mapping="actuality_file",fileNameProperty="picture")
+     * @var File|null
+     * @Assert\File(maxSize = Image::MAX_SIZE,
+     *     maxSizeMessage="Le fichier est trop gros  ({{ size }} {{ suffix }}),
+     * il ne doit pas dépasser {{ limit }} {{ suffix }}",
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/gif","image/png"},
+     *     mimeTypesMessage = "Veuillez entrer un type de fichier valide: jpg, jpeg, png ou gif.")
+     */
+    private $nameFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|null
+     */
+    private $updatedAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="images")
@@ -58,5 +81,18 @@ class Image
         $this->idProject = $idProject;
 
         return $this;
+    }
+
+    public function setNameFile(File $image = null)
+    {
+        $this->nameFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getActualityFile(): ?File
+    {
+        return $this->nameFile;
     }
 }
