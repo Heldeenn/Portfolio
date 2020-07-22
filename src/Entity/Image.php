@@ -19,6 +19,8 @@ class Image
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="L'image doit comporter un nom")
+     * @Assert\Length(max="255", maxMessage="Le nom de l'image doit comporter {{ limit }} caractères maximum")
      */
     private $name;
 
