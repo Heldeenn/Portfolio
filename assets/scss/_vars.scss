@@ -4,4 +4,12 @@ $dark-color: #701F00;
 
 $theme-colors: (
     "primary": $primary-color,
-)
+);
+
+$main-font: 'Varela Round', sans-serif;
+$title-font: 'Roboto', sans-serif;
+
+@mixin text ($font, $font-size) {
+  font-family: $font;
+  font-size: $font-size;
+}
