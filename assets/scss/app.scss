@@ -1,4 +1,5 @@
 @import "vars";
+@import "navbar";
 
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Varela+Round&display=swap');
@@ -18,4 +19,8 @@ h1 {
 
 h2, h3 {
     @include text($title-font, 20px)
+}
+
+.btn {
+    border-radius: 30px;
 }
