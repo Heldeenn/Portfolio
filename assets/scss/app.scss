@@ -1,5 +1,6 @@
 @import "vars";
 @import "navbar";
+@import "home";
 
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Varela+Round&display=swap');
@@ -10,6 +11,7 @@ html {
 }
 
 body {
+    color: $secondary-color;
     @include text($main-font, 16px)
 }
 
