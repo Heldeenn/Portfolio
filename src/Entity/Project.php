@@ -6,6 +6,7 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -21,6 +22,8 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Le projet doit comporter un nom")
+     * @Assert\Length(max="100", maxMessage="Le nom du projet doit comporter {{ limit }} caractères maximum")
      */
     private $name;
 
@@ -36,21 +39,27 @@ class Project
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="L'activité doit comporter une description")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="L'activité doit comporter un client")
+     * @Assert\Length(max="100", maxMessage="Le nom du client doit comporter {{ limit }} caractères maximum")
      */
     private $client;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="L'activité doit comporter un lien Github")
+     * @Assert\Length(max="255", maxMessage="Le lien du Github doit comporter {{ limit }} caractères maximum")
      */
     private $github;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(max="255", maxMessage="Le lien du site doit comporter {{ limit }} caractères maximum")
      */
     private $website;
 
