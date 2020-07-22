@@ -37,6 +37,12 @@ class ProjectType extends AbstractType
                 'multiple' => true,
                 'by_reference' => false,
             ])
+            ->add('images', null, [
+                'choice_label' => 'name',
+                'expanded' => true,
+                'multiple' => true,
+                'by_reference' => false,
+            ])
         ;
     }
 
