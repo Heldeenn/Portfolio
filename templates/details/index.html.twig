@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Amandine Helene - {{ project.name }}{% endblock %}
+
+{% block main %}
+<section class="container my-4">
+        <h1>{{ project.name }}</h1>
+        {% for technology in technologies %}
+                {{ technology.name }}
+        {% endfor %}
+</section>
+{% endblock %}
