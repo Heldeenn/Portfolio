@@ -40,7 +40,7 @@ class ProjectController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Le projet a bien été ajouté');
-            return $this->redirectToRoute('project_index');
+            return $this->redirectToRoute('admin_project_index');
         }
 
         return $this->render('project/new.html.twig', [
@@ -61,7 +61,7 @@ class ProjectController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'Le projet a bien été modifié');
-            return $this->redirectToRoute('project_index');
+            return $this->redirectToRoute('admin_project_index');
         }
 
         return $this->render('project/edit.html.twig', [
@@ -82,6 +82,6 @@ class ProjectController extends AbstractController
             $this->addFlash('success', 'Le projet a bien été supprimé');
         }
 
-        return $this->redirectToRoute('project_index');
+        return $this->redirectToRoute('admin_project_index');
     }
 }
