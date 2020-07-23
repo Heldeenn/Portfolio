@@ -7,19 +7,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Contact
 {
     /**
-    * @Assert\NotBlank(message="Le projet doit comporter un nom")
+    * @Assert\NotBlank(message="Merci de renseigner votre nom")
     * @Assert\Length(max="100", maxMessage="Votre nom doit comporter {{ limit }} caractères maximum")
     */
     private $name;
 
     /**
-     * @Assert\NotBlank(message="Le projet doit comporter un nom")
+     * @Assert\NotBlank(message="Merci de renseigner votre adresse mail")
      * @Assert\Email(message="Le mail {{ value }} n'est pas valide. Veuillez saisir une adresse mail valide")
      */
     private $email;
 
     /**
-     * @Assert\NotBlank(message="Le projet doit comporter un nom")
+     * @Assert\NotBlank(message="N'avez-vous rien à me dire ?")
      * @Assert\Length(max="255", maxMessage="Votre message doit comporter {{ limit }} caractères maximum")
      */
     private $message;
