@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ImageRepository;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,11 +17,12 @@ class HomeController extends AbstractController
      * @param ProjectRepository $projectRepository
      * @return Response
      */
-    public function index(Request $request, ProjectRepository $projectRepository): Response
+    public function index(Request $request, ProjectRepository $projectRepository, ImageRepository $imageRepository): Response
     {
-        $projects = $projectRepository->findAll();
+        $projects = $projectRepository->findBy([], ['dateEnd' => 'DESC']);
+
         return $this->render('home/index.html.twig', [
-            'projects' => $projects
+            'projects' => $projects,
         ]);
     }
 }

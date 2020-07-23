@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Modifier une image{% endblock %}
+
+{% block main %}
+<section class="container my-4">
+    <h1 class="mb-4">Modifier l'image</h1>
+    {{ include('image/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <div class="my-3 d-flex justify-content-end">
+        {{ include('image/_delete_form.html.twig') }}
+    </div>
+    <a class="btn btn-outline-primary" href="{{ path('image_index') }}">Retour</a>
+</section>
+{% endblock %}

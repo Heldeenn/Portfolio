@@ -3,16 +3,22 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
+ * @Vich\Uploadable()
  */
 class Project
 {
+    const MAX_SIZE = '1000k';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -72,6 +78,28 @@ class Project
      * @ORM\ManyToMany(targetEntity=Technology::class, mappedBy="projects")
      */
     private $technologies;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $thumbnail;
+
+    /**
+     * @Vich\UploadableField(mapping="image_file",fileNameProperty="thumbnail")
+     * @var File|null
+     * @Assert\File(maxSize = Image::MAX_SIZE,
+     *     maxSizeMessage="Le fichier est trop gros  ({{ size }} {{ suffix }}),
+     * il ne doit pas dépasser {{ limit }} {{ suffix }}",
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/gif","image/png"},
+     *     mimeTypesMessage = "Veuillez entrer un type de fichier valide: jpg, jpeg, png ou gif.")
+     */
+    private $thumbnailFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|null
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -168,6 +196,30 @@ class Project
         return $this;
     }
 
+    public function setThumbnailFile(File $image = null)
+    {
+        $this->thumbnailFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+    }
+
+    public function getThumbnailFile(): ?File
+    {
+        return $this->thumbnailFile;
+    }
+
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Image[]
      */
@@ -223,6 +275,18 @@ class Project
             $this->technologies->removeElement($technology);
             $technology->removeProject($this);
         }
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(string $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }
