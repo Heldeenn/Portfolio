@@ -2,6 +2,7 @@
 @import "navbar";
 @import "home";
 @import "project";
+@import "details";
 
 @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Varela+Round&display=swap');
@@ -30,4 +31,8 @@ h2, h3 {
 
 .table, .table-striped {
     color: $secondary-color;
+}
+
+ul, li {
+    list-style: none;
 }
