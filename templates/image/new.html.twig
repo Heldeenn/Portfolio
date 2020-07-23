@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Image{% endblock %}
+
+{% block main %}
+<section class="container my-4">
+    <h1 class="mb-4">Ajouter une image</h1>
+    {{ include('image/_form.html.twig') }}
+
+    <a class="btn btn-outline-primary my-4" href="{{ path('image_index') }}">Retour</a>
+</section>
+{% endblock %}

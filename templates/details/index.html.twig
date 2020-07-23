@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Amandine Helene - {{ project.name }}{% endblock %}
+
+{% block main %}
+<section class="container my-4 project-details">
+        <h1>{{ project.name }}</h1>
+        <div class="row my-4">
+                <div class="col-md-8">
+                        <div class="brief project-card">
+                                <div class="d-flex justify-content-between">
+                                        <h2 class="mt-1 mb-3">Description du projet</h2>
+                                        <h2 class="mt-1 mb-3 font-weight-bold">
+                                                {{ project.dateEnd|date('d/m/Y') }}
+                                        </h2>
+                                </div>
+                                <p class="p-0">{{ project.description|nl2br }}</p>
+                        </div>
+                        <div class="project-image project-card">
+                                <h2 class="mb-3">Captures d'écran du projet</h2>
+                                <div class="d-flex flex-wrap justify-content-around">
+                                {% for image in images %}
+                                        <img class="my-2" src="{{ vich_uploader_asset(image, 'nameFile')}}" alt="{{ image.name }}">
+                                {% endfor %}
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="project-client project-card mb-3">
+                                <h2 class="mb-3">Client</h2>
+                                <p>{{ project.client }}</p>
+                        </div>
+                        <div class="techno project-card mb-3">
+                                <h2 class="mb-3">Technologies</h2>
+                                <ul class="p-0">
+                                        {% for technology in technologies %}
+                                                <li class="my-2"><i class="fas fa-arrow-circle-right mr-2"></i>{{ technology.name }}</li>
+                                        {% endfor %}
+                                </ul>
+                        </div>
+                        <div class="links project-card">
+                                <h2 class="mb-3">Liens</h2>
+                                <div class="d-flex justify-content-between">
+                                        <a class="btn btn-primary" href="{{ project.github }}">
+                                                Github
+                                                <i class="fa fa-chevron-circle-right fa-align-right ml-2"></i>
+                                        </a>
+                                        {% if project.website is not null %}
+                                                <a class="btn btn-primary" href="{{ project.website }}">
+                                                        Site web
+                                                        <i class="fa fa-chevron-circle-right fa-align-right ml-2"></i>
+                                                </a>
+                                        {% endif %}
+                                </div>
+                        </div>
+
+                </div>
+        </div>
+</section>
+{% endblock %}

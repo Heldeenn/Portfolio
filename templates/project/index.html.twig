@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Administration Projets{% endblock %}
+
+{% block main %}
+    <section class="container-fluid my-4 w-75">
+        <h1 class="mb-4">Administration Projets</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nom du projet</th>
+                        <th>Vignette</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>Description</th>
+                        <th>Client</th>
+                        <th>Github</th>
+                        <th>Website</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for project in projects %}
+                    <tr>
+                        <th scope="row">{{ project.name }}</th>
+                        <td><img class="w-25" src="{{ vich_uploader_asset(project, 'thumbnailFile')}}" alt="{{ project.thumbnail }}"></td>
+                        <td>{{ project.dateStart ? project.dateStart|date('d-m-y') : '' }}</td>
+                        <td>{{ project.dateEnd ? project.dateEnd|date('d-m-y') : '' }}</td>
+                        <td>{{ project.description }}</td>
+                        <td>{{ project.client }}</td>
+                        <td><a href="{{ project.github }}">{{ project.github }}</a></td>
+                        <td><a href="{{ project.website }}">{{ project.website }}</a></td>
+                        <td>
+                            <a class=" btn btn-primary" href="{{ path('project_edit', {'id': project.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="9">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-primary" href="{{ path('project_new') }}">Créer un nouveau projet</a>
+    </section>
+{% endblock %}

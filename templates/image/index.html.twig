@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Administration - Images{% endblock %}
+
+{% block main %}
+    <section class="container my-4">
+        <h1>Administration des images</h1>
+        <a class="btn btn-primary my-4" href="{{ path('image_new') }}">Ajouter une nouvelle image</a>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                {% for image in images %}
+                    <tr>
+                        <td><img class="w-25" src="{{ vich_uploader_asset(image, 'nameFile')}}" alt="{{ image.name }}"></td>
+                        <td class="d-flex flex-column align-items-center">
+                            <a href="{{ path('image_show', {'id': image.id}) }}">Voir l'image</a>
+                            <a class="btn btn-primary mt-3" href="{{ path('image_edit', {'id': image.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

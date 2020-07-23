@@ -1,0 +1,22 @@
+<nav class="nav navbar-expand-lg container mt-4 p-0" id="nav">
+    <a href="{{ path('home') }}">
+        <img class="logo-navbar" src="{{ asset('build/images/logo.png') }}" alt="logo">
+    </a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="navbar-link nav-link mr-4" href="{{ path("home") }}">Portfolio</a>
+            </li>
+            {% if app.user %}
+                <li>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a class="navbar-link nav-link" href="{{ path('admin') }}">Administration</a>
+                    {% endif %}
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="btn btn-outline-primary navbar-link nav-link" href="{{ path('contact') }}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
