@@ -46,3 +46,17 @@ ul, li {
 label.custom-file-label::after {
     content: "Parcourir...";
 }
+
+.admin .admin-button {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 490px) {
+    .admin .admin-button {
+        flex-direction: column;
+        a {
+            margin-bottom: 20px;
+        }
+    }
+}

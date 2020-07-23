@@ -10,3 +10,10 @@
   margin-top: 20px;
   width: 500px;
 }
+
+@media screen and (max-width: 530px) {
+  .admin-image-edit img,
+  .admin-image-show img {
+    width: 300px;
+  }
+}
