@@ -1,4 +1,36 @@
+nav {
+  position: relative;
+}
+
 .logo-navbar {
   width: 50px;
   border-radius: 50%;
+}
+
+.burger {
+  display: none;
+  width: 50%;
+}
+
+@media screen and (max-width: 575px) {
+  .logo-navbar {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .burger {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    height: 50px;
+    button {
+      i {
+        color: $primary-color;
+      }
+    }
+  }
+  .btn-contact {
+    width: 25%;
+  }
 }
