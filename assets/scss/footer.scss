@@ -1,0 +1,22 @@
+.footer {
+  background-color: $light-color;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+}
+
+footer {
+  background-color: $footer-background;
+  position: relative;
+}
+
+footer p {
+  font-size: 12px;
+}
+
+footer i {
+  color: #fff;
+}
+
+footer a:hover {
+  background-color: $primary-color;
+}
