@@ -19,6 +19,21 @@ class TechnologyRepository extends ServiceEntityRepository
         parent::__construct($registry, Technology::class);
     }
 
+    public function findByProject($project)
+    {
+        $query = $this->createQueryBuilder('t')
+            ->select('t')
+            ->leftJoin('t.projects', 'p')
+            ->addSelect('p');
+
+        $query = $query->add('where', $query->expr()->in('p', ':p'))
+            ->setParameter('p', $project)
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
     // /**
     //  * @return Technology[] Returns an array of Technology objects
     //  */
