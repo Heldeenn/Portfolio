@@ -1,4 +1,19 @@
-.header-home {
-    height: 550px;
-    background: url("../images/placeholder.png");
+.header-home img {
+  width: 100%;
+}
+
+.header-responsive {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .header-home img {
+    display: none;
+  }
+  .header-responsive {
+    display: block;
+    h1 {
+      font-weight: bold;
+    }
+  }
 }
