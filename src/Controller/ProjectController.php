@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/")
+ * @Route("/admin/project", name="admin_project_")
  */
 class ProjectController extends AbstractController
 {
     /**
-     * @Route("/project", name="project_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(ProjectRepository $projectRepository): Response
     {
@@ -26,7 +26,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="project_new", methods={"GET","POST"})
+     * @Route("/ajouter", name="new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -50,7 +50,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="project_edit", methods={"GET","POST"})
+     * @Route("/{id}/modifier", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Project $project): Response
     {
@@ -71,7 +71,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="project_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      */
     public function delete(Request $request, Project $project): Response
     {
