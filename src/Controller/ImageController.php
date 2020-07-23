@@ -39,6 +39,7 @@ class ImageController extends AbstractController
             $entityManager->persist($image);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'image a bien été ajoutée');
             return $this->redirectToRoute('image_index');
         }
 
@@ -69,6 +70,7 @@ class ImageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'L\'image a bien été modifiée');
             return $this->redirectToRoute('image_index');
         }
 
@@ -87,6 +89,7 @@ class ImageController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($image);
             $entityManager->flush();
+            $this->addFlash('success', 'L\'image a bien été supprimée');
         }
 
         return $this->redirectToRoute('image_index');
