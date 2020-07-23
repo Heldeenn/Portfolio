@@ -16,11 +16,15 @@
                 <a class="navbar-link nav-link mr-4" href="{{ path("home") }}">Portfolio</a>
             </li>
             {% if app.user %}
-                <li>
-                    {% if is_granted("ROLE_ADMIN") %}
-                        <a class="navbar-link nav-link" href="{{ path('admin') }}">Administration</a>
-                    {% endif %}
-                </li>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <li>
+                        <a class="navbar-link nav-link mr-4" href="{{ path('admin') }}">Administration</a>
+
+                    </li>
+                    <li>
+                        <a class="navbar-link nav-link mr-4" href="{{ path('app_logout') }}">Se deconnecter</a>
+                    </li>
+                {% endif %}
             {% endif %}
             <li class="nav-item">
                 <a class="btn btn-outline-primary navbar-link nav-link btn-contact" href="{{ path('contact') }}">Contact</a>
