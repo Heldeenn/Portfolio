@@ -3,7 +3,7 @@
 {% block title %}Administration - Images{% endblock %}
 
 {% block main %}
-    <section class="container my-4">
+    <section class="container my-4 admin-image">
         <h1>Administration des images</h1>
         <a class="btn btn-primary my-4" href="{{ path('admin_image_new') }}">Ajouter une nouvelle image</a>
         <div class="table-responsive">
@@ -11,7 +11,7 @@
                 <tbody>
                 {% for image in images %}
                     <tr>
-                        <td><img class="w-25" src="{{ vich_uploader_asset(image, 'nameFile')}}" alt="{{ image.name }}"></td>
+                        <td><img src="{{ vich_uploader_asset(image, 'nameFile')}}" alt="{{ image.name }}"></td>
                         <td class="d-flex flex-column align-items-center">
                             <a href="{{ path('admin_image_show', {'id': image.id}) }}">Voir l'image</a>
                             <a class="btn btn-primary mt-3" href="{{ path('admin_image_edit', {'id': image.id}) }}">Modifier</a>

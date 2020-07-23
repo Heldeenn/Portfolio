@@ -21,7 +21,7 @@ class ImageController extends AbstractController
     public function index(ImageRepository $imageRepository): Response
     {
         return $this->render('image/index.html.twig', [
-            'images' => $imageRepository->findAll(),
+            'images' => $imageRepository->findBy([], ['updatedAt' => 'DESC']),
         ]);
     }
 
@@ -40,7 +40,7 @@ class ImageController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'image a bien été ajoutée');
-            return $this->redirectToRoute('image_index');
+            return $this->redirectToRoute('admin_image_index');
         }
 
         return $this->render('image/new.html.twig', [
@@ -71,7 +71,7 @@ class ImageController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'L\'image a bien été modifiée');
-            return $this->redirectToRoute('image_index');
+            return $this->redirectToRoute('admin_image_index');
         }
 
         return $this->render('image/edit.html.twig', [
@@ -92,6 +92,6 @@ class ImageController extends AbstractController
             $this->addFlash('success', 'L\'image a bien été supprimée');
         }
 
-        return $this->redirectToRoute('image_index');
+        return $this->redirectToRoute('admin_image_index');
     }
 }
