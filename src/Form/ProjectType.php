@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProjectType extends AbstractType
 {
@@ -30,6 +31,15 @@ class ProjectType extends AbstractType
             ->add('client')
             ->add('github')
             ->add('website')
+            ->add('thumbnailFile', VichImageType::class, [
+                'label' => 'Image à télécharger',
+                'help'=> 'Le fichier ne doit pas dépasser '. Project::MAX_SIZE,
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'download_link' => false,
+                'delete_label'  => 'Supprimer cette image',
+            ])
             ->add('technologies', EntityType::class, [
                 'class' => Technology::class,
                 'choice_label' => 'name',

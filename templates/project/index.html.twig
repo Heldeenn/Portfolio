@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>Nom du projet</th>
+                        <th>Vignette</th>
                         <th>Date de début</th>
                         <th>Date de fin</th>
                         <th>Description</th>
@@ -23,6 +24,7 @@
                 {% for project in projects %}
                     <tr>
                         <th scope="row">{{ project.name }}</th>
+                        <td><img class="w-25" src="{{ vich_uploader_asset(project, 'thumbnailFile')}}" alt="{{ project.thumbnail }}"></td>
                         <td>{{ project.dateStart ? project.dateStart|date('d-m-y') : '' }}</td>
                         <td>{{ project.dateEnd ? project.dateEnd|date('d-m-y') : '' }}</td>
                         <td>{{ project.description }}</td>

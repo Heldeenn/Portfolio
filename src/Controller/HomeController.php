@@ -19,11 +19,10 @@ class HomeController extends AbstractController
      */
     public function index(Request $request, ProjectRepository $projectRepository, ImageRepository $imageRepository): Response
     {
-        $projects = $projectRepository->findAll();
-        $images = $imageRepository->findAll();
+        $projects = $projectRepository->findBy([], ['dateEnd' => 'DESC']);
+
         return $this->render('home/index.html.twig', [
             'projects' => $projects,
-            'images' => $images
         ]);
     }
 }
