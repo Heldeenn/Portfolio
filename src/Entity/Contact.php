@@ -20,7 +20,7 @@ class Contact
 
     /**
      * @Assert\NotBlank(message="Le projet doit comporter un nom")
-     * @Assert\Length(max="255", maxMessage="Le nom du projet doit comporter {{ limit }} caractères maximum")
+     * @Assert\Length(max="255", maxMessage="Votre message doit comporter {{ limit }} caractères maximum")
      */
     private $message;
 
