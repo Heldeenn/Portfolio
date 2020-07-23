@@ -34,6 +34,7 @@ class ContactController extends AbstractController
                 ->subject('Nouveau message !')
                 ->html($this->renderView('contact/mail.html.twig', ['contact' => $contact]))
                 ;
+            $this->addFlash('success', 'Votre message a bien été envoyé');
             $mailer->send($email);
             return $this->redirectToRoute('home');
         }
