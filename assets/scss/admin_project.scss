@@ -6,3 +6,9 @@
   margin-top: 20px;
   width: 500px;
 }
+
+@media screen and (max-width: 530px) {
+  .admin-project-edit img {
+    width: 300px;
+  }
+}
