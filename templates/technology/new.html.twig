@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}nouvelle technologie{% endblock %}
+
+{% block main %}
+    <section class="container my-4">
+        <h1>Créer une nouvelle technologie</h1>
+
+        {{ include('technology/_form.html.twig') }}
+
+        <a class="btn btn-outline-primary my-4" href="{{ path('admin_technology_index') }}">Retour</a>
+    </section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Administration technologies{% endblock %}
+
+{% block main %}
+<section class="container-fluid my-4 w-75 admin-project">
+    <h1 class="mb-4">Administration des technologies</h1>
+    <a class="btn btn-primary mb-3" href="{{ path('admin_technology_new') }}">Nouvelle technologie</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for technology in technologies %}
+                <tr>
+                    <td>{{ technology.name }}</td>
+                    <td>
+                        <a class=" btn btn-primary" href="{{ path('admin_technology_edit', {'id': technology.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
