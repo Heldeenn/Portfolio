@@ -19,6 +19,7 @@
                         <div class="project-image project-card">
                                 <h2 class="mb-3">Captures d'écran du projet</h2>
                                 <div class="d-flex flex-wrap justify-content-around">
+                                        <img class="my-2" src="{{ vich_uploader_asset(project, 'thumbnailFile')}}" alt="{{ project.name }}">
                                 {% for image in images %}
                                         <img class="my-2" src="{{ vich_uploader_asset(image, 'nameFile')}}" alt="{{ image.name }}">
                                 {% endfor %}

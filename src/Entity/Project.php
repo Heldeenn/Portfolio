@@ -27,7 +27,7 @@ class Project
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Assert\NotBlank(message="Le projet doit comporter un nom")
      * @Assert\Length(max="100", maxMessage="Le nom du projet doit comporter {{ limit }} caractères maximum")
      */
@@ -284,7 +284,7 @@ class Project
         return $this->thumbnail;
     }
 
-    public function setThumbnail(string $thumbnail): self
+    public function setThumbnail(?string $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 
