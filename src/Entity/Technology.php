@@ -6,6 +6,7 @@ use App\Repository\TechnologyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TechnologyRepository::class)
@@ -21,6 +22,8 @@ class Technology
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="L'activité doit comporter une description")
+     * @Assert\Length(max="100", maxMessage="Le nom de la technologie doit comporter {{ limit }} caractères maximum")
      */
     private $name;
 
