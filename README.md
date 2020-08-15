@@ -6,3 +6,4 @@
 * SCSS
 * Bootstrap
 * MySQL
+* Javascript
